@@ -1,8 +1,8 @@
 {
   "name": "orca",
   "version": "1.4.214",
-  "description": "Next-gen IDE for parallel agentic development",
-  "homepage": "https://github.com/stablyai/orca",
+  "description": "BOUNTY AI — AI-powered development environment for parallel coding agents",
+  "homepage": "https://github.com/black1011f-bot/bounty-ai2",
   "author": "stablyai",
   "bin": {
     "orca": "./out/cli/index.js",
