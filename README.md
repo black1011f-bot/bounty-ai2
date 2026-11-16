@@ -16,14 +16,14 @@
 </p>
 
 <p align="center">
-  <strong>The AI Orchestrator for 100x builders.</strong><br/>
+  <strong>BOUNTY AI — an AI workspace for developers.</strong><br/>
   Run Claude Code, Codex, and any other coding agent in parallel, each in its own worktree. Chat or terminal, on your laptop or in the cloud, with diffs, a browser, and a CLI in one app.
 </p>
 
-<h3 align="center"><a href="https://orca.dev/download"><ins>Download Orca</ins></a></h3>
+<h3 align="center">BOUNTY AI is based on the open-source Orca project</h3>
 
 <p align="center">
-  <img src="docs/assets/readme-hero.jpg" alt="Orca desktop app with a coordinator agent running worker agents in parallel workspaces, and the Orca mobile app in the corner" width="960" />
+  <img src="docs/assets/readme-hero.jpg" alt="BOUNTY AI desktop app based on Orca" width="960" />
 </p>
 
 ## Features
