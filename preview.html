@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<title>BOUNTY AI — Preview</title>
+<style>
+:root{color-scheme:dark;--bg:#080808;--panel:#111;--panel2:#171717;--line:#262626;--muted:#888;--white:#f5f5f5}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{min-height:100dvh;display:grid;place-items:center;padding:22px}
+button,textarea{font:inherit}button{color:inherit;cursor:pointer}
+.app{width:min(100%,980px);height:min(880px,calc(100dvh - 44px));min-height:560px;background:#0c0c0c;border:1px solid #242424;border-radius:25px;display:flex;overflow:hidden;box-shadow:0 24px 90px #000b;position:relative}
+.sidebar{width:245px;flex:none;background:#101010;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;padding:3px 5px;font-weight:750;letter-spacing:.12em;font-size:13px}
+.logo{width:30px;height:30px;border:1px solid #555;border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:17px}
+.newchat,.sideitem,.iconbtn,.suggestion,.send{border:1px solid var(--line);background:transparent;border-radius:12px}
+.newchat{padding:11px 12px;text-align:left;display:flex;gap:10px;align-items:center}
+.side-label{font-size:10px;letter-spacing:.16em;color:#666;padding:0 8px;text-transform:uppercase}
+.sideitem{border:0;text-align:left;color:#aaa;padding:9px 10px;width:100%;margin-top:4px}
+.sideitem:hover,.newchat:hover,.suggestion:hover{background:#1a1a1a;color:#fff}
+.sidebar-foot{margin-top:auto;color:#686868;font-size:11px;padding:8px}
+.main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative}
+.topbar{height:64px;flex:none;border-bottom:1px solid #202020;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.top-title{font-size:13px;color:#aaa;letter-spacing:.04em}
+.actions{display:flex;gap:8px}
+.iconbtn{width:36px;height:36px;display:grid;place-items:center;color:#bbb;font-size:17px}
+.iconbtn:hover{background:#202020;color:#fff}
+.content{flex:1;overflow:auto;padding:42px 30px 18px;display:flex;flex-direction:column;align-items:center}
+.welcome{width:min(100%,610px);margin:auto 0;text-align:center;padding:25px 0 35px}
+.mark{width:48px;height:48px;margin:0 auto 20px;border:1px solid #555;border-radius:15px;display:grid;place-items:center;font-size:24px;font-weight:800}
+h1{font-size:clamp(25px,4vw,34px);letter-spacing:-.045em;margin:0 0 9px;font-weight:650}
+.sub{color:#888;margin:0 0 27px}
+.suggestions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}
+.suggestion{font-size:12px;color:#bdbdbd;padding:9px 13px}
+.messages{width:min(100%,650px);display:flex;flex-direction:column;gap:17px;margin:0 auto 22px}
+.msg{max-width:85%;padding:13px 16px;border-radius:17px;font-size:14px;white-space:pre-wrap}
+.user{align-self:flex-end;background:#f0f0f0;color:#111;border-bottom-right-radius:5px}
+.assistant{align-self:flex-start;background:#171717;border:1px solid #292929;color:#ddd;border-bottom-left-radius:5px}
+.composer-wrap{padding:12px 24px 19px;border-top:1px solid #202020;background:#0c0c0c}
+.composer{width:min(100%,700px);margin:auto;border:1px solid #333;background:#141414;border-radius:18px;padding:12px;display:flex;align-items:flex-end;gap:10px;box-shadow:0 8px 35px #0007}
+textarea{flex:1;resize:none;min-height:28px;max-height:130px;border:0;outline:0;background:transparent;color:#fff;padding:4px 2px}
+textarea::placeholder{color:#666}
+.send{width:37px;height:37px;background:#f2f2f2;color:#111;border:0;border-radius:12px;font-size:18px;font-weight:700}
+.send:disabled{opacity:.35;cursor:default}
+.hint{text-align:center;color:#555;font-size:10px;margin:9px 0 0}
+.mobile-menu{display:none}
+.toast{position:absolute;left:50%;bottom:95px;transform:translateX(-50%);background:#eee;color:#111;border-radius:10px;padding:8px 13px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+@media(max-width:700px){
+ body{padding:0}.app{width:100%;height:100dvh;min-height:0;border:0;border-radius:0;box-shadow:none}
+ .sidebar{position:absolute;z-index:5;inset:0 auto 0 0;width:min(280px,84vw);transform:translateX(-105%);transition:transform .22s;box-shadow:15px 0 50px #0009}
+ .sidebar.open{transform:translateX(0)}
+ .mobile-menu{display:grid}.topbar{height:58px;padding:0 14px}.top-title{display:none}
+ .content{padding:25px 17px 14px}.welcome{padding:20px 0 30px}.composer-wrap{padding:10px 12px calc(12px + env(safe-area-inset-bottom))}
+ .messages{gap:12px}.msg{max-width:92%;font-size:13px}.suggestion{font-size:11px;padding:8px 10px}
+}
+@media(min-width:701px) and (max-height:650px){.app{height:calc(100dvh - 24px);min-height:0}.content{padding-top:18px}.welcome{padding:10px 0 18px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><span class="logo">B</span><span>BOUNTY AI</span></div>
+<button class="newchat" id="sideNew"><span>＋</span> Новый чат</button>
+<div><div class="side-label">Рабочее пространство</div><button class="sideitem" id="history">◷　История чатов</button><button class="sideitem" id="clear">⌫　Очистить чат</button></div>
+<div class="sidebar-foot">BOUNTY AI · PREVIEW<br>Демонстрационный интерфейс</div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="actions"><button class="iconbtn mobile-menu" id="menu" aria-label="Меню">☰</button><span class="top-title">Новый диалог</span></div>
+<div class="actions"><button class="iconbtn" id="new" title="Новый чат" aria-label="Новый чат">＋</button></div>
+</header>
+<section class="content" id="content">
+<div class="welcome" id="welcome">
+<div class="mark">B</div>
+<h1>Чем займёмся сегодня?</h1>
+<p class="sub">Твои идеи. Твой рабочий процесс. Один AI.</p>
+<div class="suggestions">
+<button class="suggestion">✦　Придумать идею</button>
+<button class="suggestion">⌘　Объяснить тему</button>
+<button class="suggestion">〈/〉　Написать код</button>
+</div>
+</div>
+<div class="messages" id="messages"></div>
+</section>
+<footer class="composer-wrap">
+<div class="composer"><textarea id="prompt" rows="1" placeholder="Напиши сообщение..." aria-label="Сообщение"></textarea><button class="send" id="send" aria-label="Отправить" disabled>↑</button></div>
+<div class="hint">BOUNTY AI Preview · Ответы демонстрационные, подключение AI пока не настроено</div>
+</footer>
+<div class="toast" id="toast"></div>
+</main>
+</div>
+<script>
+const $=s=>document.querySelector(s), input=$('#prompt'), send=$('#send'), messages=$('#messages'), welcome=$('#welcome'), content=$('#content');
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
+function reset(){messages.innerHTML='';welcome.hidden=false;input.value='';send.disabled=true;input.focus();$('#sidebar').classList.remove('open')}
+function add(text,kind){const el=document.createElement('div');el.className='msg '+kind;el.textContent=text;messages.append(el);welcome.hidden=true;content.scrollTop=content.scrollHeight}
+function submit(){const value=input.value.trim();if(!value)return;add(value,'user');input.value='';send.disabled=true;setTimeout(()=>{add('Это демонстрационный ответ BOUNTY AI. Интерфейс работает локально, но настоящая AI-модель пока не подключена. После проверки дизайна можно будет подключить backend.','assistant');content.scrollTop=content.scrollHeight},450)}
+input.addEventListener('input',()=>{send.disabled=!input.value.trim();input.style.height='auto';input.style.height=Math.min(input.scrollHeight,130)+'px'});
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submit()}});
+send.addEventListener('click',submit);$('#new').onclick=reset;$('#sideNew').onclick=reset;$('#clear').onclick=()=>{messages.innerHTML='';welcome.hidden=false;toast('Чат очищен')};$('#history').onclick=()=>toast('История появится в следующей версии');$('#menu').onclick=()=>$('#sidebar').classList.toggle('open');
+document.querySelectorAll('.suggestion').forEach(b=>b.onclick=()=>{input.value=b.textContent.replace(/^[^А-Яа-яA-Za-z]+/,'').trim();send.disabled=false;input.focus()});
+</script>
+</body>
+</html>
